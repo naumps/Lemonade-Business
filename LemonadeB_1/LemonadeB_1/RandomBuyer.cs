@@ -20,7 +20,7 @@ namespace LemonadeB_1
         {
             buyersList = new List<Buyer>(N);
             random = new Random();
-            storeP = new Point(110, 250);
+            storeP = new Point(610, 220);
             createStarts();
             createEnds();
             pic = new Bitmap(Resources.face,30,30);
@@ -29,8 +29,8 @@ namespace LemonadeB_1
 
         private void createStarts() {
             startingP = new Point[2];
-            startingP[0] = new Point(0,150);
-            startingP[1] = new Point(280,104);
+            startingP[0] = new Point(350, 320);
+            startingP[1] = new Point(740, 320);
         }
 
         private void createEnds()

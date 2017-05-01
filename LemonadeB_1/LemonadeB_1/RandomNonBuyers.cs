@@ -26,8 +26,8 @@ namespace LemonadeB_1
 
         private void createStarts() {
             startingP = new Point[2];
-            startingP[0] = new Point(0,104);
-            startingP[1] = new Point(280,104);
+            startingP[0] = new Point(350,150);
+            startingP[1] = new Point(740,320);
         }
 
         private void createEnds()

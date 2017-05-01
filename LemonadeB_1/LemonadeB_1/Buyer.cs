@@ -44,7 +44,7 @@ namespace LemonadeB_1
                 {
                     Wait = false;
                     ready = false;
-                    Position = new Point(Position.X + moveSpeed, PathY);
+                    Position = new Point(Position.X , PathY + moveSpeed);
                     BuyersWaitList.buyersList.Remove(this);
                 }
                 else
@@ -69,7 +69,7 @@ namespace LemonadeB_1
                             if (Position.X == storePoint.X) {
                                 Wait = true;
                                 lastListIndex = BuyersWaitList.buyersList.Count;
-                                Position = new Point(Position.X, storePoint.Y - lastListIndex * Picture.Height);
+                                Position = new Point(Position.X, storePoint.Y + lastListIndex * Picture.Height);
                                 BuyersWaitList.buyersList.Add(this);
                                 
                             }
@@ -79,7 +79,7 @@ namespace LemonadeB_1
                             {
                                 if (walkNextP > 0)
                                 {
-                                    Position = new Point(Position.X, Position.Y + 1);
+                                    Position = new Point(Position.X, Position.Y - 1);
                                     walkNextP--;
                                 }
                             }
