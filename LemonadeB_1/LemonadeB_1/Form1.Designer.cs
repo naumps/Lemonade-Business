@@ -39,7 +39,7 @@
             this.lblSugar = new System.Windows.Forms.Label();
             this.lblLemons = new System.Windows.Forms.Label();
             this.lblTotalMoney = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pbDay = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddLemon = new System.Windows.Forms.Button();
             this.btnRemoveLemon = new System.Windows.Forms.Button();
@@ -147,12 +147,12 @@
             this.lblTotalMoney.Text = "Total Money";
             this.lblTotalMoney.TextChanged += new System.EventHandler(this.lblTotalMoney_TextChanged);
             // 
-            // progressBar1
+            // pbDay
             // 
-            this.progressBar1.Location = new System.Drawing.Point(486, 445);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(230, 23);
-            this.progressBar1.TabIndex = 2;
+            this.pbDay.Location = new System.Drawing.Point(486, 445);
+            this.pbDay.Name = "pbDay";
+            this.pbDay.Size = new System.Drawing.Size(230, 23);
+            this.pbDay.TabIndex = 2;
             // 
             // label1
             // 
@@ -329,7 +329,7 @@
             this.Controls.Add(this.btnAddSugar);
             this.Controls.Add(this.btnAddLemon);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.pbDay);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btStartDay);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -359,7 +359,7 @@
         private System.Windows.Forms.Label lblIce;
         private System.Windows.Forms.Label lblSugar;
         private System.Windows.Forms.Label lblLemons;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar pbDay;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddLemon;
         private System.Windows.Forms.Button btnRemoveLemon;

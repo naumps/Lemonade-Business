@@ -102,6 +102,8 @@ namespace LemonadeB_1
                 scene = new Scene();
                 Day = 0;
             }
+            pbDay.Maximum = 25;// ako ja zgolemuvame dolzinata na denot togas maximum = dolzinata na denot
+            pbDay.Value = Day;
         }
 
 
