@@ -1,0 +1,32 @@
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\bin\Debug\LemonadeB_1.exe
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\bin\Debug\LemonadeB_1.pdb
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\obj\x86\Debug\LemonadeB_1.Form1.resources
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\obj\x86\Debug\LemonadeB_1.Properties.Resources.resources
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csproj.GenerateResource.Cache
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\obj\x86\Debug\LemonadeB_1.exe
+C:\Users\Miki\AppData\Local\Temporary Projects\LemonadeB_1\obj\x86\Debug\LemonadeB_1.pdb
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.exe
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.pdb
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.exe
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.pdb
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.Properties.Resources.resources
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csproj.GenerateResource.Cache
+C:\Users\Miki\Documents\Visual Studio 2010\Projects\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.LemonadeBusiness.resources
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.exe
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.pdb
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.exe
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.pdb
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csprojResolveAssemblyReference.cache
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.LemonadeBusiness.resources
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.Properties.Resources.resources
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csproj.GenerateResource.Cache
+C:\Users\Naum Pop Stefanija\Desktop\Lemonade-Business-master\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.StartNewGameForm.resources
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.exe
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.pdb
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.exe
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Debug\LemonadeB_1.pdb
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csprojResolveAssemblyReference.cache
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.LemonadeBusiness.resources
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.Properties.Resources.resources
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.StartNewGameForm.resources
+C:\Users\Miki\Desktop\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Debug\LemonadeB_1.csproj.GenerateResource.Cache
