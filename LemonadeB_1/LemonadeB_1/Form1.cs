@@ -20,6 +20,10 @@ namespace LemonadeB_1
         int lemons;
         int sugar;
         int ice;
+        int cups;
+        decimal TotalMoney;
+        GroupBox currentGroupBox;
+        Upgrade up;
 
         public LemonadeBusiness()
         {
@@ -32,8 +36,13 @@ namespace LemonadeB_1
             lemons = 0;
             sugar = 0;
             ice = 0;
-            updateMyItems();
-            updateTB();
+            TotalMoney = 50m;
+            //updateMyItems();
+           // updateTB();
+            UpgradesSet();
+            currentGroupBox = groupBoxRecipe;
+            lblTotalMoney.Text = TotalMoney.ToString() + " $";
+            labelResultsPrice.Text = numPrice.Value.ToString() + " $";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -83,18 +92,45 @@ namespace LemonadeB_1
 
         private void btStartDay_Click(object sender, EventArgs e)
         {
-            btStartDay.Enabled = false;
-            gameTimer.Enabled = true;
-            newHumanTimer.Enabled = true;
-            dayTimer.Enabled = true;
-            addNonBuyers(5);
-            addBuyers(3);
+           // changeGroupBox(ResultsGroupBox);
+            if (enoughResurses())
+            {
+                ToggleNavBarButtons();
+                changeGroupBox(GroupBoxResults);
+                resetResults();
+                btStartDay.Enabled = false;
+                gameTimer.Enabled = true;
+                newHumanTimer.Enabled = true;
+                dayTimer.Enabled = true;
+                addNonBuyers(5);
+                addBuyers(3);
+            }
+            else {
+                MessageBox.Show("You don't have enough resourses for your recipe to start the day.\nChange your recipe or buy more suplies.","Warning",MessageBoxButtons.OK);
+            }
+        }
+
+        private bool enoughResurses() {
+            if (lemons * cups > int.Parse(labelLemonsCount.Text)) return false;
+            if (sugar * cups > int.Parse(labelSugarCount.Text)) return false;
+            if (ice * cups > int.Parse(labelIceCount.Text)) return false;
+
+            return true;
+        }
+
+        private void resetResults() {
+            labelResultsCupsSold.Text = "0";
+            labelResultsEarnings.Text = "0";
+            Happy.Text = "0";
+            Sad.Text = "0";
+            labelResults_Mad.Text = "0"; 
         }
 
         private void dayTimer_Tick(object sender, EventArgs e)
         {
             Day++;
             if (Day == 25) {
+                ToggleNavBarButtons();
                 dayTimer.Enabled = false;
                 btStartDay.Enabled = true;
                 gameTimer.Enabled = false;
@@ -106,146 +142,288 @@ namespace LemonadeB_1
             pbDay.Value = Day;
         }
 
-
-        private void updateTB()
-        {
-            tbLeemons.Text = lemons.ToString();
-            tbIce.Text = ice.ToString();
-            tbSugar.Text = sugar.ToString() ;
-            lblTotalMoney.Text = String.Format("${0:0.0}", Store.Money.ToString());
-
-        }
-        private void updateMyItems()
-        {
-            lblLemons.Text = String.Format("Lemons: {0}", Store.Leemons.Count);
-            lblSugar.Text = String.Format("Sugar: {0}", Store.Sugar.Count);
-            lblIce.Text = String.Format("Ice: {0}", Store.Ice.Count);
-            tbIce.Text = "0";
-            tbLeemons.Text = "0";
-            tbSugar.Text = "0";
-            lblCups.Text = String.Format("Total cups:{0}",nudNumberOfCups.Value.ToString());
-            nudNumberOfCups.Value = 0;
-        }
-
-        private void btnAddLemon_Click(object sender, EventArgs e)
-        {
-            Store.addLeemon();
-            lemons++;
-            updateTB();
-        }
-
-        private void btnRemoveLemon_Click(object sender, EventArgs e)
-        {
-            if(tbLeemons.Text != "0")
-            {
-                Store.removeLeemon();
-                lemons--;
-                updateTB();
-            }
-        }
-
-        private void btnAddSugar_Click(object sender, EventArgs e)
-        {
-            Store.addSugar();
-            sugar++;
-            updateTB();
-        }
-
-        private void btnRemoveSugar_Click(object sender, EventArgs e)
-        {
-            if (tbSugar.Text != "0")
-            {
-                Store.removeSugar();
-                sugar--;
-                updateTB();
-
-            }
-        }
-
-        private void btnAddIce_Click(object sender, EventArgs e)
-        {
-            Store.addIce();
-            ice++;
-            updateTB();
-
-        }
-
-        private void btnRemoveIce_Click(object sender, EventArgs e)
-        {
-            if (tbIce.Text != "0")
-            {
-                Store.removeIce();
-                ice--;
-                updateTB();
-            }
-        }
-        private bool amIHappy()
-        {
-            int difference = Store.calculatePercentOfHappyPeople(calculateIdealNumberOfCups(),(int)nudNumberOfCups.Value);
-            Random random = new Random();
-            double randomNumber = random.NextDouble() * 100;
-            if (randomNumber <= difference)
-            {
-                return true;
-            }
-            return false;
-        }
-
        
-
-        private void btnMakeLemonade_Click(object sender, EventArgs e)
+        private void btRecipe_Click(object sender, EventArgs e)
         {
-            lblPercent.Text = String.Format("Percent of happy people is: {0}", Store.calculatePercentOfHappyPeople(calculateIdealNumberOfCups(), (int)nudNumberOfCups.Value));
-            updateMyItems();
-            lemons = 0;
-            sugar = 0;
-            ice = 0;
+            changeGroupBox(groupBoxRecipe);
         }
 
-        private void lblTotalMoney_TextChanged(object sender, EventArgs e)
+        private void btSupplies_Click(object sender, EventArgs e)
         {
-            if (Store.Money < Store.LEEMON_PRICE)
-            {
-                btnAddLemon.Enabled = false;
-            }else
-            {
-                btnAddLemon.Enabled = true;
-            }
+            changeGroupBox(SuppliesGroupBox);
+        }
 
-            if (Store.Money < Store.SUGAR_PRICE)
+        private void changeGroupBox(GroupBox gb) {
+            if (gb != currentGroupBox)
             {
-                btnAddSugar.Enabled = false;
-            }else
-            {
-                btnAddSugar.Enabled = true;
-            }
-
-            if (Store.Money < Store.ICE_PRICE)
-            {
-                btnAddIce.Enabled = false;
-            }else
-            {
-                btnAddIce.Enabled = true;
+                currentGroupBox.Visible = false;
+                currentGroupBox = gb;
+                currentGroupBox.Visible = true;
             }
         }
 
+        private void ToggleNavBarButtons() {
+            btRecipe.Enabled = !btRecipe.Enabled;
+            btSupplies.Enabled = !btSupplies.Enabled;
+            btUpgrade.Enabled = !btUpgrade.Enabled;
+            btUpgrade.Enabled = !btUpgrade.Enabled;
+        }
 
-
-        private void nudNumberOfCups_ValueChanged(object sender, EventArgs e)
+        private void btResults_Click(object sender, EventArgs e)
         {
-            if (nudNumberOfCups.Value != 0)
+            changeGroupBox(GroupBoxResults);
+        }
+
+        private decimal totalOrderPrice() {
+            decimal sum = 0;
+            
+            sum += numSupLemons.Value*4.5m;
+            sum += numSupSugar.Value * 1.5m;
+            sum += numSupIce.Value * 0.5m;
+            sum += numSupCups.Value * 2m;
+            
+            return sum;
+        }
+
+        private void resetSupliesBoxValues() {
+            numSupLemons.Value=0;
+            numSupSugar.Value =0;
+            numSupIce.Value =0;
+            numSupCups.Value =0;
+        }
+
+            //Check if Order Price > Total Money
+            private void checkifOrderisOK() {
+                
+                 if(totalOrderPrice() > TotalMoney)
+                     btSupOrder.Enabled = false;
+                 else
+                     btSupOrder.Enabled = true;
+        }
+
+            private void numSupLemons_ValueChanged(object sender, EventArgs e)
             {
-                btnMakeLemonade.Enabled = true;
-            }else
-            {
-                btnMakeLemonade.Enabled = false;
+                checkifOrderisOK();
             }
-        }
+
+            private void numSupSugar_ValueChanged(object sender, EventArgs e)
+            {
+                checkifOrderisOK();
+            }
+
+            private void numSupIce_ValueChanged(object sender, EventArgs e)
+            {
+                checkifOrderisOK();
+            }
+
+            private void numSupCups_ValueChanged(object sender, EventArgs e)
+            {
+                checkifOrderisOK();
+            }
+
+            private int OrderTotalLemons() {
+                return (int)numSupLemons.Value * 12;
+            }
+
+            private int OrderTotalSugar()
+            {
+                return (int)numSupSugar.Value * 10;
+            }
+
+            private int OrderTotalIce()
+            {
+                return (int)numSupLemons.Value * 15;
+            }
+
+            private int OrderTotalCups()
+            {
+                return (int)numSupLemons.Value * 20;
+            }
+
+            private void btSupOrder_Click(object sender, EventArgs e)
+            {
+                String msg = String.Format("Order list:\n Total Lemons: {0}\n Total Sugar: {1}\n Total Ice: {2}\n Total Cups: {3}\n\n Total Price: {4}$", OrderTotalLemons(), OrderTotalSugar(), OrderTotalIce(), OrderTotalCups(), totalOrderPrice());
+                DialogResult confirm = MessageBox.Show(msg,"Confirmation",MessageBoxButtons.OKCancel);
+
+                if (confirm == DialogResult.OK) {
+                    TotalMoney -= totalOrderPrice();
+                    labelLemonsCount.Text = OrderTotalLemons().ToString();
+                    labelSugarCount.Text = OrderTotalSugar().ToString();
+                    labelIceCount.Text = OrderTotalIce().ToString();
+                    labelCupsCount.Text = OrderTotalCups().ToString();
+                    updateTOtalMoney();
+                    resetSupliesBoxValues();
+
+                }
+            }
+
+            private void updateTOtalMoney() {
+                lblTotalMoney.Text = TotalMoney.ToString() + " $";
+            }
+
+            private void btnAddLemon_Click(object sender, EventArgs e)
+            {
+                lemons = int.Parse(tbLeemons.Text);
+
+                if (lemons < 99)
+                {
+                    lemons += 1;
+                    tbLeemons.Text = (lemons).ToString();
+                }
+
+                if (checkifRecipeisOK()) btnMakeLemonade.Enabled = true;
+                else btnMakeLemonade.Enabled = false;
+            }
+
+            private void btnRemoveLemon_Click(object sender, EventArgs e)
+            {
+                lemons = int.Parse(tbLeemons.Text);
+
+                if (lemons > 0)
+                {
+                    lemons -= 1;
+                    tbLeemons.Text = (lemons).ToString();
+                }
+
+                if (checkifRecipeisOK()) btnMakeLemonade.Enabled = true;
+                else btnMakeLemonade.Enabled = false;
+            }
+
+            private void btnAddSugar_Click(object sender, EventArgs e)
+            {
+                sugar = int.Parse(tbSugar.Text);
+
+                if (sugar < 99)
+                {
+                    sugar += 1;
+                    tbSugar.Text = (sugar).ToString();
+                }
+            }
+
+            private void btnRemoveSugar_Click(object sender, EventArgs e)
+            {
+                sugar = int.Parse(tbSugar.Text);
+
+                if (sugar > 0)
+                {
+                    sugar -= 1;
+                    tbSugar.Text = (sugar).ToString();
+                }
+            }
+
+            private void btnAddIce_Click(object sender, EventArgs e)
+            {
+                ice = int.Parse(tbIce.Text);
+
+                if (ice < 99)
+                {
+                    ice += 1;
+                    tbIce.Text = (ice).ToString();
+                }
+            }
+
+            private void btnRemoveIce_Click(object sender, EventArgs e)
+            {
+                ice = int.Parse(tbIce.Text);
+
+                if (ice > 0)
+                {
+                    ice -= 1;
+                    tbIce.Text = (ice).ToString();
+                }
+            }
+
+            private void nudNumberOfCups_ValueChanged(object sender, EventArgs e)
+            {
+                cups = (int)nudNumberOfCups.Value;
+                if (checkifRecipeisOK()) btnMakeLemonade.Enabled = true;
+                else btnMakeLemonade.Enabled = false;
+            }
+
+            private bool checkifRecipeisOK() {
+                if (nudNumberOfCups.Value > 0 && lemons > 0) return true;
+                return false;
+            }
+
+            private void btnMakeLemonade_Click(object sender, EventArgs e)
+            {
+                labelResultsLeemons.Text = lemons.ToString();
+                labelResultsIce.Text = ice.ToString();
+                labelResultSugar.Text = sugar.ToString();
+                labelResultsCups.Text = cups.ToString();
+                btStartDay.Enabled = true;
+            }
+
+            private void btPrice_Click(object sender, EventArgs e)
+            {
+                changeGroupBox(groupBoxPrice);
+            }
+
+            private void numPrice_ValueChanged(object sender, EventArgs e)
+            {
+                numPrice.DecimalPlaces = 2;
+                labelResultsPrice.Text = numPrice.Value.ToString() + " $";
+            }
+
+            private void UpgradesSet() {
+                Upgrade Juicer = new Upgrade("Juicer", 25.99m,10, "A juicer is a tool used to extract juice from fruits in a process called juicing. Buy this item and get 10% more speed in the making of the lemonade.");
+                Upgrade IceMaker = new Upgrade("Ice Maker",40m,20, "A machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the end of the day.");
+                Upgrade Jukebox = new Upgrade("Jukebox", 33.33m,15, "A jukebox is a partially automated music-playing device, that will play a patron's selection from self-contained media. If you have this, people will love you and it's more likely that they will tip you. This item gives you 15% more profit.");
+                cbUpgrades.Items.Add(Juicer);
+                cbUpgrades.Items.Add(IceMaker);
+                cbUpgrades.Items.Add(Jukebox);
+
+            }
+
+            private void cbUpgrades_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                up = cbUpgrades.SelectedItem as Upgrade;
+
+                if (up != null)
+                {
+                    listBoxUpgrades.ClearSelected();
+                    tbUpgradesPrice.Text = up.price.ToString() + " $";
+                    tbUpgradesInfo.Text = up.info;
+                    if (TotalMoney >= up.price)
+                    {
+                        btUpgradesBuy.Enabled = true;
+                    }
+                    else { btUpgradesBuy.Enabled = false; }
+                }
+            }
+
+            private void btUpgradesBuy_Click(object sender, EventArgs e)
+            {
+                if (up != null)
+                {
+                    listBoxUpgrades.Items.Add(up);
+                    cbUpgrades.Items.Remove(up);    
+                    TotalMoney -= up.price;
+                    updateTOtalMoney();
+                    tbUpgradesInfo.Text = "";
+                    cbUpgrades.Text = "";
+                    tbUpgradesPrice.Text = "";
+                    btUpgradesBuy.Enabled = false;
+                    up = null;
+                }
+                if (cbUpgrades.Items.Count == 0) cbUpgrades.Enabled = false;
 
 
-        private int calculateIdealNumberOfCups()
-        {
-            return lemons + lemons / 2 + ice / 2;
-        }
+            }
+
+            private void listBoxUpgrades_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                /*Upgrade upListed = listBoxUpgrades.SelectedItem as Upgrade;
+                if (upListed != null)
+                {
+                    tbUpgradesInfo.Text = "";
+                    tbUpgradesInfo.Text = up.info;
+                } */
+            }
+
+            private void btUpgrade_Click(object sender, EventArgs e)
+            {
+                changeGroupBox(groupBoxUpgrades);
+            }
     }
 }

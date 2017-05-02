@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Store.cs" />
     <Compile Include="Sugar.cs" />
+    <Compile Include="Upgrade.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
