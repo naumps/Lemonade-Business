@@ -9,109 +9,145 @@ namespace LemonadeB_1
     {
         //Konstantite pretstavuvaat cena na produktite, moze da bidat fiksni ili da se
         //mestat na pocetokot na igrata
-        public readonly int LEEMON_PRICE = 3;
-        public readonly int SUGAR_PRICE = 1;
-        public readonly double ICE_PRICE = 0.5;
+        public readonly decimal LEEMON_PRICE = 3m;
+        public readonly decimal SUGAR_PRICE = 1m;
+        public readonly decimal ICE_PRICE = 0.5m;
+        public readonly decimal CUP_PRICE = 0.5m;
 
-        public double Money { get; set; }
+        public readonly int LEEMON_PACKAGE_AMOUNT = 12;
+        public readonly int SUGAR_PACKAGE_AMOUNT = 10;
+        public readonly int ICE_PACKAGE_AMOUNT = 15;
+        public readonly int CUPS_PACKAGE_AMOUNT = 20;
 
-        public double LemonadePrice { get; set; }
         public String NameOfStore { get; set; }
-        public List<Leemon> Leemons { get; set; }
-        public List<Ice> Ice { get; set; }
-        public List<Sugar> Sugar { get; set; }
+        public int Leemons { get; set; }
+        public int Ice { get; set; }
+        public int Sugar { get; set; }
+        public int Cups { get; set; }
+        public decimal Money { get; set; }
 
+        public int lastRecipeLeamons { get; set; }
+        public int lastRecipeSugar { get; set; }
+        public int lastRecipeIce { get; set; }
+        public int lastRecipeCups { get; set; }
+      //  public bool Recipe { get; set; }
 
+        public List<Upgrade> upgrades { get; set; }
+
+        public Recipe recipe;
+        public decimal price;
+        public bool sunny;
+        public int satisfactionPercent;
+        public int PricesatiSfactionPercent;
+        public int Popularity;
+        private Random random;
+        public int people { get; set; }
         public Store(String name)
         {
             NameOfStore = name;
-            Leemons = new List<Leemon>();
-            Ice = new List<Ice>();
-            Sugar = new List<Sugar>();
-            Money = 20.5;
-
+            Leemons = 0;
+            Ice = 0;
+            Sugar = 0;
+            Cups = 0;
+            Money = 30m;
+            price = 0;
+            Popularity = 5;
+            satisfactionPercent = 0;
+            PricesatiSfactionPercent = 0;
+            random = new Random();
+           // Recipe = false;
+            recipe = new Recipe();
+            upgrades = new List<Upgrade>();
+            sunny = true;
         }
 
-        public void addLeemon()
+        public void startDay() {        
+            recipe = new Recipe(lastRecipeLeamons, lastRecipeIce, lastRecipeSugar,price,sunny);
+            satisfactionPercent = recipe.calculateRecipe();
+            PricesatiSfactionPercent = recipe.calculatePriceSatisfaction();
+        }
+
+        public int Rating() {
+
+            if (random.Next(1, 10) <= PricesatiSfactionPercent) {
+                return 0;
+            }
+            else if (random.Next(1, 10) >= satisfactionPercent)
+            {
+                return 1;
+            }
+            else {
+                return 2;
+            }
+        }
+
+       public void Upgrades() {
+            foreach (Upgrade up in upgrades) {
+                if (up.type == "Ice") {
+                    Ice += 20;
+                }
+                else if (up.type == "Jukebox") {
+                    Popularity += 1;
+                }
+            }
+        }
+
+        public int generatePopularityPeople() {
+             people = 1;
+
+            if (Popularity <= 3) Popularity = 3;
+
+            for (int i = 0; i < lastRecipeCups; i++) {
+                if (random.Next(10) <= Popularity) {
+                    people++;
+                }
+                if (people > 10) people = 10;
+            }
+
+            return people;
+        }
+
+        public int OrderTotalLemons(int c)
         {
-            if (Money >= LEEMON_PRICE)
-            {
-                Leemons.Add(new Leemon("Yellow Leemon", LEEMON_PRICE));
-                Money -= LEEMON_PRICE;
-
-            }
+            return LEEMON_PACKAGE_AMOUNT * c;
         }
-        public void removeLeemon()
+
+        public int OrderTotalSugar(int c)
         {
-            if (Leemons.Count != 0)
-            {
-                Leemons.RemoveAt(Leemons.Count - 1);
-                Money += LEEMON_PRICE;
-            }
+            return SUGAR_PACKAGE_AMOUNT * c;
         }
 
-        public void addSugar()
+        public int OrderTotalIce(int c)
         {
-            if (Money >= SUGAR_PRICE)
-            {
-                Sugar.Add(new Sugar("Sugar", SUGAR_PRICE));
-                Money -= SUGAR_PRICE;
-
-            }
+            return ICE_PACKAGE_AMOUNT * c;
         }
-        public void removeSugar()
+
+        public int OrderTotalCups(int c)
         {
-            if (Sugar.Count != 0)
-            {
-                Sugar.RemoveAt(Sugar.Count - 1);
-                Money += SUGAR_PRICE;
-            }
-        }
-        public void addIce()
-        {
-            if (Money >= ICE_PRICE)
-            {
-                Ice.Add(new Ice("Ice", ICE_PRICE));
-                Money -= ICE_PRICE;
-
-            }
-        }
-        public void removeIce()
-        {
-            if (Ice.Count != 0)
-            {
-                Ice.RemoveAt(Ice.Count - 1);
-                Money += ICE_PRICE;
-            }
+            return CUPS_PACKAGE_AMOUNT * c;
         }
 
+        public bool enoughResurses() {
+            if (lastRecipeLeamons * lastRecipeCups > Leemons) return false;
+            if (lastRecipeSugar * lastRecipeCups > Sugar) return false;
+            if (lastRecipeIce * lastRecipeCups > Ice) return false;
 
-        
-
-        public int calculatePercentOfHappyPeople(int idealNumber,int cups)
-        {
-            int difference = Math.Abs(idealNumber - cups);
-
-            if (difference == 0)
-            {
-                return 95;
-            }
-            else if (difference <= 2)
-            {
-                return 75;
-            }
-            else if (difference <= 3)
-            {
-                return 50;
-            }
-            else
-            {
-                return 15;
-            }
+            return true;
         }
 
+        public void removeSuplies() {
+            Leemons -= lastRecipeLeamons * lastRecipeCups;
+            if (Leemons < 0) Leemons = 0;
 
+            Sugar -= lastRecipeSugar * lastRecipeCups;
+            if (Sugar < 0) Sugar = 0;
 
+            Ice -= lastRecipeIce * lastRecipeCups;
+            if (Ice < 0) Ice = 0;
+
+            Cups -= lastRecipeCups;
+            if (Cups < 0) Cups = 0;
+        }
 
     }
 }
