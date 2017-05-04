@@ -117,32 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="background_start1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background_start1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="background3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="face" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\face_natural.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="unmute2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\unmute2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="slika_300x300" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slika_300x300.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Very_Angry_Emoji" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Very_Angry_Emoji.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Every day buy more ingredients, but be careful not to go bankrupt .
+Time also plays an important role in the success of the recipe.Once you collect enough money buy
+upgrades that will bring more money.You can buy a jukebox, a juicer and an ice machine.
+
+A jukebox is a partially automated music-playing device, that will play a patron's selection from self-contained media. If you have this, people will love you and it's more likely that it will increse your popularity. This item gives you 10% more popularity per day.
+
+A juicer is a tool used to extract juice from fruits in a process called juicing. Buy this item and get 10% more speed in the making of the lemonade.
+
+An ice machine is a machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the start of the day.
+
+Select the price of your product but be careful not to set the price too high.Try to guess the right recipe. 
+Be the best in your job. Good luck.</value>
   </data>
 </root>

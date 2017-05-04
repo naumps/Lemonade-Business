@@ -54,10 +54,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HowToPlayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HowToPlayForm.designer.cs">
+      <DependentUpon>HowToPlayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Human.cs" />
+    <Compile Include="NewStoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewStoreForm.designer.cs">
+      <DependentUpon>NewStoreForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NonBuyer.cs" />
+    <Compile Include="ObjectSerialization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RandomBuyer.cs" />
     <Compile Include="RandomNonBuyers.cs" />
     <Compile Include="Recipe.cs" />
@@ -65,7 +83,7 @@
     <Compile Include="StartNewGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartNewGameForm.Designer.cs">
+    <Compile Include="StartNewGameForm.designer.cs">
       <DependentUpon>StartNewGameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Store.cs" />
@@ -73,16 +91,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HowToPlayForm.resx">
+      <DependentUpon>HowToPlayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewStoreForm.resx">
+      <DependentUpon>NewStoreForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="StartNewGameForm.resx">
       <DependentUpon>StartNewGameForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,10 +122,25 @@
     <None Include="Resources\slika_300x300.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ddddd.jpg" />
+    <None Include="Resources\background3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\test.jpg" />
+    <None Include="Resources\background_start1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Very_Angry_Emoji.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unmute2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mute.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

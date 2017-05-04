@@ -7,6 +7,7 @@ namespace LemonadeB_1
 {
     static class Program
     {
+        public static StartNewGameForm form;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,7 +16,8 @@ namespace LemonadeB_1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LemonadeBusiness());
+            form = new StartNewGameForm();
+            Application.Run(form);
         }
     }
 }

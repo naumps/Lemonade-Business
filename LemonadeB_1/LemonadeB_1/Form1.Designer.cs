@@ -34,6 +34,7 @@
             this.dayTimer = new System.Windows.Forms.Timer(this.components);
             this.btStartDay = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.labelLemonadesTotal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelCupsCount = new System.Windows.Forms.Label();
@@ -92,7 +93,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.labelResults_Mad = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.mad = new System.Windows.Forms.PictureBox();
             this.labelResults_Sad = new System.Windows.Forms.Label();
             this.Sad = new System.Windows.Forms.PictureBox();
             this.labelResults_Happy = new System.Windows.Forms.Label();
@@ -109,17 +110,18 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.groupBoxUpgrades = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.cbUpgrades = new System.Windows.Forms.ComboBox();
-            this.tbUpgradesPrice = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.tbUpgradesInfo = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.listBoxUpgrades = new System.Windows.Forms.ListBox();
             this.btUpgradesBuy = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.listBoxUpgrades = new System.Windows.Forms.ListBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbUpgradesInfo = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbUpgradesPrice = new System.Windows.Forms.TextBox();
+            this.cbUpgrades = new System.Windows.Forms.ComboBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfCups)).BeginInit();
             this.groupBoxRecipe.SuspendLayout();
@@ -129,12 +131,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSupSugar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSupLemons)).BeginInit();
             this.GroupBoxResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Happy)).BeginInit();
             this.groupBoxPrice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.groupBoxUpgrades.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -156,9 +159,9 @@
             // 
             this.btStartDay.Enabled = false;
             this.btStartDay.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btStartDay.Location = new System.Drawing.Point(486, 487);
+            this.btStartDay.Location = new System.Drawing.Point(399, 462);
             this.btStartDay.Name = "btStartDay";
-            this.btStartDay.Size = new System.Drawing.Size(230, 23);
+            this.btStartDay.Size = new System.Drawing.Size(156, 42);
             this.btStartDay.TabIndex = 0;
             this.btStartDay.Text = "StartDay";
             this.btStartDay.UseVisualStyleBackColor = true;
@@ -182,6 +185,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(759, 29);
             this.panel1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.ForeColor = System.Drawing.Color.Green;
+            this.label6.Location = new System.Drawing.Point(598, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 20);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Money:";
             // 
             // labelLemonadesTotal
             // 
@@ -300,9 +314,9 @@
             // 
             // pbDay
             // 
-            this.pbDay.Location = new System.Drawing.Point(486, 458);
+            this.pbDay.Location = new System.Drawing.Point(399, 433);
             this.pbDay.Name = "pbDay";
-            this.pbDay.Size = new System.Drawing.Size(230, 23);
+            this.pbDay.Size = new System.Drawing.Size(344, 23);
             this.pbDay.TabIndex = 2;
             // 
             // btnAddLemon
@@ -336,8 +350,8 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(336, 77);
             this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "Tweak your perfect prescription. Once you choose all the ingredients, choose in h" +
-                "ow many cups will you mix the lemonade ...\r\n";
+            this.textBox1.Text = "Tweak your perfect recipe. Once you choose all the ingredients, choose in how man" +
+    "y cups will you mix the lemonade ...\r\n";
             // 
             // tbLeemons
             // 
@@ -561,7 +575,7 @@
             this.SuppliesGroupBox.Controls.Add(this.textBox2);
             this.SuppliesGroupBox.Location = new System.Drawing.Point(12, 97);
             this.SuppliesGroupBox.Name = "SuppliesGroupBox";
-            this.SuppliesGroupBox.Size = new System.Drawing.Size(346, 413);
+            this.SuppliesGroupBox.Size = new System.Drawing.Size(341, 413);
             this.SuppliesGroupBox.TabIndex = 15;
             this.SuppliesGroupBox.TabStop = false;
             this.SuppliesGroupBox.Text = "Supplies";
@@ -687,7 +701,7 @@
             this.textBox2.Size = new System.Drawing.Size(336, 77);
             this.textBox2.TabIndex = 5;
             this.textBox2.Text = "Make sure you always have enough of everything or your adventure might end sooner" +
-                " than you think...";
+    " than you think...";
             // 
             // GroupBoxResults
             // 
@@ -703,7 +717,7 @@
             this.GroupBoxResults.Controls.Add(this.label13);
             this.GroupBoxResults.Controls.Add(this.textBox4);
             this.GroupBoxResults.Controls.Add(this.labelResults_Mad);
-            this.GroupBoxResults.Controls.Add(this.pictureBox4);
+            this.GroupBoxResults.Controls.Add(this.mad);
             this.GroupBoxResults.Controls.Add(this.labelResults_Sad);
             this.GroupBoxResults.Controls.Add(this.Sad);
             this.GroupBoxResults.Controls.Add(this.labelResults_Happy);
@@ -843,15 +857,15 @@
             this.labelResults_Mad.TabIndex = 34;
             this.labelResults_Mad.Text = "0";
             // 
-            // pictureBox4
+            // mad
             // 
-            this.pictureBox4.Image = global::LemonadeB_1.Properties.Resources.face;
-            this.pictureBox4.Location = new System.Drawing.Point(246, 126);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(40, 41);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 33;
-            this.pictureBox4.TabStop = false;
+            this.mad.Image = global::LemonadeB_1.Properties.Resources.mad;
+            this.mad.Location = new System.Drawing.Point(246, 126);
+            this.mad.Name = "mad";
+            this.mad.Size = new System.Drawing.Size(40, 41);
+            this.mad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.mad.TabIndex = 33;
+            this.mad.TabStop = false;
             // 
             // labelResults_Sad
             // 
@@ -885,7 +899,7 @@
             // 
             // Happy
             // 
-            this.Happy.Image = global::LemonadeB_1.Properties.Resources.face;
+            this.Happy.Image = global::LemonadeB_1.Properties.Resources.happy;
             this.Happy.Location = new System.Drawing.Point(39, 126);
             this.Happy.Name = "Happy";
             this.Happy.Size = new System.Drawing.Size(40, 41);
@@ -1025,7 +1039,7 @@
             this.textBox5.Size = new System.Drawing.Size(327, 77);
             this.textBox5.TabIndex = 44;
             this.textBox5.Text = "Set the price of your lemonade, however choose wisely, you don\'t want to go bankr" +
-                "upt or lose customers.\r\n";
+    "upt or lose customers.\r\n";
             // 
             // groupBoxUpgrades
             // 
@@ -1047,99 +1061,6 @@
             this.groupBoxUpgrades.Text = "Upgrades";
             this.groupBoxUpgrades.Visible = false;
             // 
-            // textBox7
-            // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox7.Location = new System.Drawing.Point(4, 19);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(327, 29);
-            this.textBox7.TabIndex = 5;
-            this.textBox7.Text = "Buy an Upgrade for your Business";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cbUpgrades
-            // 
-            this.cbUpgrades.FormattingEnabled = true;
-            this.cbUpgrades.Location = new System.Drawing.Point(24, 82);
-            this.cbUpgrades.Name = "cbUpgrades";
-            this.cbUpgrades.Size = new System.Drawing.Size(134, 21);
-            this.cbUpgrades.TabIndex = 6;
-            this.cbUpgrades.Text = "Upgrades";
-            this.cbUpgrades.SelectedIndexChanged += new System.EventHandler(this.cbUpgrades_SelectedIndexChanged);
-            // 
-            // tbUpgradesPrice
-            // 
-            this.tbUpgradesPrice.Enabled = false;
-            this.tbUpgradesPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbUpgradesPrice.Location = new System.Drawing.Point(203, 82);
-            this.tbUpgradesPrice.Name = "tbUpgradesPrice";
-            this.tbUpgradesPrice.Size = new System.Drawing.Size(100, 20);
-            this.tbUpgradesPrice.TabIndex = 7;
-            this.tbUpgradesPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(45, 58);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(85, 18);
-            this.label14.TabIndex = 46;
-            this.label14.Text = "Upgrades:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(228, 58);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 18);
-            this.label18.TabIndex = 47;
-            this.label18.Text = "Price:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(3, 291);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(142, 18);
-            this.label19.TabIndex = 48;
-            this.label19.Text = "Owned Upgrades:";
-            // 
-            // tbUpgradesInfo
-            // 
-            this.tbUpgradesInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbUpgradesInfo.Location = new System.Drawing.Point(6, 140);
-            this.tbUpgradesInfo.Multiline = true;
-            this.tbUpgradesInfo.Name = "tbUpgradesInfo";
-            this.tbUpgradesInfo.ReadOnly = true;
-            this.tbUpgradesInfo.Size = new System.Drawing.Size(325, 106);
-            this.tbUpgradesInfo.TabIndex = 46;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(6, 116);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 18);
-            this.label20.TabIndex = 49;
-            this.label20.Text = "Info:";
-            // 
-            // listBoxUpgrades
-            // 
-            this.listBoxUpgrades.ColumnWidth = 130;
-            this.listBoxUpgrades.FormattingEnabled = true;
-            this.listBoxUpgrades.HorizontalExtent = 50;
-            this.listBoxUpgrades.Location = new System.Drawing.Point(4, 312);
-            this.listBoxUpgrades.Name = "listBoxUpgrades";
-            this.listBoxUpgrades.Size = new System.Drawing.Size(325, 95);
-            this.listBoxUpgrades.TabIndex = 50;
-            this.listBoxUpgrades.SelectedIndexChanged += new System.EventHandler(this.listBoxUpgrades_SelectedIndexChanged);
-            // 
             // btUpgradesBuy
             // 
             this.btUpgradesBuy.Enabled = false;
@@ -1152,16 +1073,117 @@
             this.btUpgradesBuy.UseVisualStyleBackColor = true;
             this.btUpgradesBuy.Click += new System.EventHandler(this.btUpgradesBuy_Click);
             // 
-            // label6
+            // listBoxUpgrades
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.ForeColor = System.Drawing.Color.Green;
-            this.label6.Location = new System.Drawing.Point(598, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Money:";
+            this.listBoxUpgrades.ColumnWidth = 130;
+            this.listBoxUpgrades.FormattingEnabled = true;
+            this.listBoxUpgrades.HorizontalExtent = 50;
+            this.listBoxUpgrades.Location = new System.Drawing.Point(4, 312);
+            this.listBoxUpgrades.Name = "listBoxUpgrades";
+            this.listBoxUpgrades.Size = new System.Drawing.Size(325, 95);
+            this.listBoxUpgrades.TabIndex = 50;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(6, 116);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 18);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "Info:";
+            // 
+            // tbUpgradesInfo
+            // 
+            this.tbUpgradesInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbUpgradesInfo.Location = new System.Drawing.Point(6, 140);
+            this.tbUpgradesInfo.Multiline = true;
+            this.tbUpgradesInfo.Name = "tbUpgradesInfo";
+            this.tbUpgradesInfo.ReadOnly = true;
+            this.tbUpgradesInfo.Size = new System.Drawing.Size(325, 106);
+            this.tbUpgradesInfo.TabIndex = 46;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(3, 291);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(142, 18);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Owned Upgrades:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(228, 58);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(52, 18);
+            this.label18.TabIndex = 47;
+            this.label18.Text = "Price:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(45, 58);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(85, 18);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Upgrades:";
+            // 
+            // tbUpgradesPrice
+            // 
+            this.tbUpgradesPrice.Enabled = false;
+            this.tbUpgradesPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbUpgradesPrice.Location = new System.Drawing.Point(203, 82);
+            this.tbUpgradesPrice.Name = "tbUpgradesPrice";
+            this.tbUpgradesPrice.Size = new System.Drawing.Size(100, 20);
+            this.tbUpgradesPrice.TabIndex = 7;
+            this.tbUpgradesPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cbUpgrades
+            // 
+            this.cbUpgrades.FormattingEnabled = true;
+            this.cbUpgrades.Location = new System.Drawing.Point(24, 82);
+            this.cbUpgrades.Name = "cbUpgrades";
+            this.cbUpgrades.Size = new System.Drawing.Size(134, 21);
+            this.cbUpgrades.TabIndex = 6;
+            this.cbUpgrades.Text = "Upgrades";
+            this.cbUpgrades.SelectedIndexChanged += new System.EventHandler(this.cbUpgrades_SelectedIndexChanged);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox7.Location = new System.Drawing.Point(4, 19);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(327, 29);
+            this.textBox7.TabIndex = 5;
+            this.textBox7.Text = "Buy an Upgrade for your Business";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(588, 462);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(155, 40);
+            this.btnSave.TabIndex = 47;
+            this.btnSave.Text = "Save && Quit";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LemonadeB_1.Properties.Resources.unmute2;
+            this.pictureBox1.Location = new System.Drawing.Point(718, 508);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(53, 51);
+            this.pictureBox1.TabIndex = 48;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // LemonadeBusiness
             // 
@@ -1169,6 +1191,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBoxUpgrades);
             this.Controls.Add(this.btPrice);
             this.Controls.Add(this.btResults);
@@ -1186,7 +1210,9 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "LemonadeBusiness";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lemonade Business";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LemonadeBusiness_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panel1.ResumeLayout(false);
@@ -1202,7 +1228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSupLemons)).EndInit();
             this.GroupBoxResults.ResumeLayout(false);
             this.GroupBoxResults.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Happy)).EndInit();
             this.groupBoxPrice.ResumeLayout(false);
@@ -1210,6 +1236,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.groupBoxUpgrades.ResumeLayout(false);
             this.groupBoxUpgrades.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1257,7 +1284,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label labelResults_Mad;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox mad;
         private System.Windows.Forms.Label labelResults_Sad;
         private System.Windows.Forms.PictureBox Sad;
         private System.Windows.Forms.Label labelResults_Happy;
@@ -1307,6 +1334,8 @@
         private System.Windows.Forms.ComboBox cbUpgrades;
         private System.Windows.Forms.Button btUpgradesBuy;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LemonadeB_1.Properties;
+using System.IO;
 
 namespace LemonadeB_1
 {
@@ -22,16 +23,18 @@ namespace LemonadeB_1
         int sugar;
         int ice;
         int cups;
-       // decimal TotalMoney;
+        // decimal TotalMoney;
         GroupBox currentGroupBox;
         Upgrade up;
-        Label l1;
+        public Label storeName { get; set; }
         Store store;
         decimal moneyTODAY;
         int cupsSOLD;
         Label weather;
+        bool hasMusic;
+        System.Media.SoundPlayer player;
 
-        public LemonadeBusiness()
+        public LemonadeBusiness(Store s)
         {
             InitializeComponent();
             scene = new Scene();       
@@ -39,7 +42,7 @@ namespace LemonadeB_1
             backgroundLocation = new Point(360,100);
             this.DoubleBuffered = true;
             random = new Random();
-            store = new Store("Jonny's Lemonade Shop");
+            store = s;
             lemons = 0;
             moneyTODAY = 0;
             sugar = 0;
@@ -51,6 +54,9 @@ namespace LemonadeB_1
             updateMoney();
             labelResultsPrice.Text = numPrice.Value.ToString() + " $";
             CreateManuelLabel();
+            hasMusic = true;
+            player = new System.Media.SoundPlayer();
+            player.SoundLocation = "..\\..\\song\\music1.wav";
         }
 
         private void updateMoney() {
@@ -59,13 +65,13 @@ namespace LemonadeB_1
             labelResultsCupsSold.Text = cupsSOLD.ToString();
         }
 
-        private void CreateManuelLabel()
+        public void CreateManuelLabel()
         {
-            l1 = new Label();
-            l1.Location = new Point(515, 85);
-            l1.Text = store.NameOfStore;
-            this.Controls.Add(l1);
-            l1.AutoSize = true;
+            storeName = new Label();
+            storeName.Location = new Point(515, 85);
+            storeName.Text = store.NameOfStore;
+            this.Controls.Add(storeName);
+            storeName.AutoSize = true;
             weather = new Label();
             weather.Location = new Point(515, 405);
 
@@ -84,7 +90,7 @@ namespace LemonadeB_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            player.PlayLooping();
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -330,7 +336,7 @@ namespace LemonadeB_1
                 }
             }
 
-            private void updateResurses() {
+            public void updateResurses() {
                 labelLemonsCount.Text = store.Leemons.ToString();
                 labelSugarCount.Text = store.Sugar.ToString();
                 labelIceCount.Text = store.Ice.ToString();
@@ -495,14 +501,44 @@ namespace LemonadeB_1
 
             }
 
-            private void listBoxUpgrades_SelectedIndexChanged(object sender, EventArgs e)
-            {
-                
-            }
+           
 
             private void btUpgrade_Click(object sender, EventArgs e)
             {
                 changeGroupBox(groupBoxUpgrades);
             }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            LemonadeBusiness activeForm = (LemonadeBusiness)LemonadeBusiness.ActiveForm;
+            if(MessageBox.Show("Do you really want to close?","Save && Quit",MessageBoxButtons.YesNo)== DialogResult.Yes)
+            {
+                ObjectSerialization.saveToFile(activeForm.store);
+                this.Close();
+                Program.form.Close();
+               // Environment.Exit(0);
+
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (hasMusic)
+            {
+                pictureBox1.Image = Resources.mute;
+                player.Stop();
+                hasMusic = false;
+            }else
+            {
+                pictureBox1.Image = Resources.unmute2;
+                player.PlayLooping();
+                hasMusic = true;
+            }
+        }
+
+        private void LemonadeBusiness_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.form.Close();
+        }
     }
 }

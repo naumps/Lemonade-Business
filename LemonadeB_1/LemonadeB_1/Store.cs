@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace LemonadeB_1
 {
+    [Serializable]
     public class Store
     {
         //Konstantite pretstavuvaat cena na produktite, moze da bidat fiksni ili da se
@@ -40,11 +44,12 @@ namespace LemonadeB_1
         public int satisfactionPercent;
         public int PricesatiSfactionPercent;
         public int Popularity;
-        private Random random;
+        public Random random;
         public int people { get; set; }
         public Store(String name)
         {
-            NameOfStore = name;
+            //change name
+            NameOfStore =name;
             Leemons = 0;
             Ice = 0;
             Sugar = 0;
@@ -149,5 +154,9 @@ namespace LemonadeB_1
             if (Cups < 0) Cups = 0;
         }
 
+        public override string ToString()
+        {
+            return String.Format("Store: {0} - {1}$", NameOfStore, Money);
+        }
     }
 }

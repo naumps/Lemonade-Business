@@ -5,6 +5,7 @@ using System.Text;
 
 namespace LemonadeB_1
 {
+    [Serializable]
     public class Upgrade
     {
         public String name { get; set; }

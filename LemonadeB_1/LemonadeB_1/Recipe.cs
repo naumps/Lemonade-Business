@@ -5,6 +5,7 @@ using System.Text;
 
 namespace LemonadeB_1
 {
+    [Serializable]
     public class Recipe
     {
         public int Leemons { get; set; }
@@ -31,23 +32,37 @@ namespace LemonadeB_1
             this.Sunny = true;
         }
 
-        public int calculateRecipe(){
+        public int calculateRecipe()
+        {
             int x = 10;
 
-            if (Leemons != 4) {
-                x -= Math.Abs(Leemons-4)*2;
+            if (Leemons != 4)
+            {
+                x -= Math.Abs(Leemons - 4) * 2;
             }
-            if (Sugar != 2) {
+            if (Sugar != 2)
+            {
                 x -= Math.Abs(Sugar - 2);
             }
-            if (Sunny == true && Ice != 2) {
+            if (Sunny == true && Ice != 2)
+            {
                 x -= Math.Abs(Ice - 2);
             }
-            if (Sunny == false && Ice != 0) {
-                x -= Math.Abs(Ice - 2)*3;
+            if (Sunny == false && Ice != 0)
+            {
+                x -= Math.Abs(Ice - 2) * 3;
             }
-            if (Leemons / Sugar != 2) {
-                x -= (Leemons % Sugar);
+
+            if (Sugar > 0)
+            {
+                if (Leemons / Sugar != 2)
+                {
+                    x -= (Leemons % Sugar);
+                }
+            }
+            else
+            {
+                x -= (Leemons / 2);
             }
 
             if (x < 0) x = 0;
