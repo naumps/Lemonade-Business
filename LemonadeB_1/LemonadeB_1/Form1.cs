@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using LemonadeB_1.Properties;
 using System.IO;
+using System.Media;
 
 namespace LemonadeB_1
 {
@@ -19,44 +20,38 @@ namespace LemonadeB_1
         int Day;
         private Random random;
         public Store Store { get; set; }
+        public Label storeName { get; set; }
         int lemons;
         int sugar;
         int ice;
         int cups;
-        // decimal TotalMoney;
         GroupBox currentGroupBox;
         Upgrade up;
-        public Label storeName { get; set; }
         Store store;
         decimal moneyTODAY;
         int cupsSOLD;
         Label weather;
         bool hasMusic;
-        System.Media.SoundPlayer player;
+        SoundPlayer player;
+        Bitmap ratingFaceHappy;
+        Bitmap ratingFaceSad;
+        Bitmap ratingFaceMad;
 
         public LemonadeBusiness(Store s)
         {
             InitializeComponent();
-            scene = new Scene();       
-            background = new Bitmap(Resources.slika_300x300);
-            backgroundLocation = new Point(360,100);
+            
+            loadScene();
             this.DoubleBuffered = true;
             random = new Random();
             store = s;
-            lemons = 0;
-            moneyTODAY = 0;
-            sugar = 0;
-            ice = 0;
-            cupsSOLD = 0;
-           // TotalMoney = 50m;
+            loadStoreItems();
             UpgradesSet();
             currentGroupBox = groupBoxRecipe;
             updateMoney();
             labelResultsPrice.Text = numPrice.Value.ToString() + " $";
             CreateManuelLabel();
-            hasMusic = true;
-            player = new System.Media.SoundPlayer();
-            player.SoundLocation = "..\\..\\song\\music1.wav";
+            loadMusic();        
         }
 
         private void updateMoney() {
@@ -79,6 +74,7 @@ namespace LemonadeB_1
 
             this.Controls.Add(weather);
             weather.AutoSize = true;
+            loadUpgrades();
         }
 
         private void updateWeather() {
@@ -90,7 +86,7 @@ namespace LemonadeB_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            player.PlayLooping();
+            
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -101,36 +97,16 @@ namespace LemonadeB_1
             foreach (Buyer nb in scene.buyersNow)
             {
                 nb.Move();
-                if (nb.PAID == true) {
-                    nb.PAID = false;
-                    cupsSOLD += 1;
-                    moneyTODAY += numPrice.Value;
-                    store.Money += numPrice.Value;
-                    updateMoney();
-
-                    if (store.Rating() == 0) {
-                        labelResults_Mad.Text = (int.Parse(labelResults_Mad.Text)+1).ToString();
-                        store.Popularity -= 1;
-                    }
-                    else if (store.Rating() == 1)
-                    {
-                        store.Popularity -= 1;
-                        labelResults_Sad.Text = (int.Parse(labelResults_Sad.Text) + 1).ToString();
-                    }
-                    else {
-                        store.Popularity += 1;
-                        labelResults_Happy.Text = (int.Parse(labelResults_Happy.Text) + 1).ToString();
-                    }
-                }
-                
+                isitPaid(nb);
             }
             Invalidate();
-        }    
+        }
 
         private void newNonBuyerTimer_Tick(object sender, EventArgs e)
         {
-            scene.addNewNonByer();
-            scene.addNewByer();
+            if(random.Next(2)==1) scene.addNewNonByer();
+            if (random.Next(2)==1) scene.addNewByer();
+
             foreach (Buyer b in scene.buyersNow)
             {
                 b.waitingToBuy();
@@ -169,27 +145,13 @@ namespace LemonadeB_1
             store.removeSuplies();
             updateResurses();
         }
-
+        
         private void btStartDay_Click(object sender, EventArgs e)
         {
            
             if (store.enoughResurses())
             {
-                ToggleNavBarButtons();
-                changeGroupBox(GroupBoxResults);
-                resetResults();
-                showRecipe();
-                store.startDay();
-                takeResursi();
-                labelLemonadesTotal.Text = store.lastRecipeCups.ToString();
-                btStartDay.Enabled = false;
-                gameTimer.Enabled = true;
-                newHumanTimer.Enabled = true;
-                dayTimer.Enabled = true;
-                moneyTODAY = 0;
-                cupsSOLD = 0;
-                addNonBuyers();
-                addBuyers();
+                DayStart();
             }
             else {
                 MessageBox.Show("You don't have enough resourses for your recipe to start the day.\nChange your recipe or buy more suplies.","Warning",MessageBoxButtons.OK);
@@ -207,7 +169,11 @@ namespace LemonadeB_1
         private void dayTimer_Tick(object sender, EventArgs e)
         {
             Day++;
-            if (Day == store.people*9) {
+            int check = store.people*7; 
+            check = scene.buyers.Count * 7;
+            if (check < 14) check = 25;
+            if (Day >= check && !scene.buyersNow[scene.buyersNow.Count - 1].Alive && !scene.nonbuyersNow[scene.nonbuyersNow.Count - 1].Alive)
+            {
                 ToggleNavBarButtons();
                 dayTimer.Enabled = false;
                 btStartDay.Enabled = true;
@@ -226,10 +192,13 @@ namespace LemonadeB_1
                 updateWeather();
                 scene = new Scene();
                 Day = 0;
+                pbDay.Value = 0;
                 store.Upgrades();
+                updateResurses();
             }
-            pbDay.Maximum = store.people * 9;// ako ja zgolemuvame dolzinata na denot togas maximum = dolzinata na denot
-            pbDay.Value = Day;
+            pbDay.Maximum = check;// ako ja zgolemuvame dolzinata na denot togas maximum = dolzinata na denot
+            if (pbDay.Value >= pbDay.Maximum - 1) pbDay.Value = pbDay.Maximum;
+            else pbDay.Value = Day;
         }
 
        
@@ -256,7 +225,8 @@ namespace LemonadeB_1
             btRecipe.Enabled = !btRecipe.Enabled;
             btSupplies.Enabled = !btSupplies.Enabled;
             btUpgrade.Enabled = !btUpgrade.Enabled;
-            btPrice.Enabled = !btPrice.Enabled;   
+            btPrice.Enabled = !btPrice.Enabled;
+            btnSave.Enabled = !btnSave.Enabled;
         }
 
         private void btResults_Click(object sender, EventArgs e)
@@ -317,10 +287,13 @@ namespace LemonadeB_1
                 int totalSugar = store.OrderTotalSugar((int)numSupSugar.Value);
                 int totalCups = store.OrderTotalCups((int)numSupCups.Value);
                 int totalIce = store.OrderTotalIce((int)numSupIce.Value);
+                DialogResult confirm = DialogResult.Cancel;
 
-                String msg = String.Format("Order list:\n Total Lemons: {0}\n Total Sugar: {1}\n Total Ice: {2}\n Total Cups: {3}\n\n Total Price: {4}$", totalLemons, totalSugar, totalIce, totalCups, totalOrderPrice());
-                DialogResult confirm = MessageBox.Show(msg,"Confirmation",MessageBoxButtons.OKCancel);
-               
+                if (totalLemons != 0 || totalSugar != 0 || totalCups != 0 || totalIce != 0)
+                {
+                    String msg = String.Format("Order list:\n Total Lemons: {0}\n Total Sugar: {1}\n Total Ice: {2}\n Total Cups: {3}\n\n Total Price: {4}$", totalLemons, totalSugar, totalIce, totalCups, totalOrderPrice());
+                     confirm = MessageBox.Show(msg, "Confirmation", MessageBoxButtons.OKCancel);
+                }
                 if (confirm == DialogResult.OK) {
                     store.Money -= totalOrderPrice();
                   
@@ -347,15 +320,38 @@ namespace LemonadeB_1
                 lblTotalMoney.Text = store.Money.ToString() + " $";               
             }
 
+            private void increseRecipeItem(out int item, TextBox tb) {
+                item = int.Parse(tb.Text);
+
+                if (item < 99)
+                {
+                    item += 1;
+                    tb.Text = (item).ToString();
+                }
+            }
+
+            private void decreseRecipeItem(out int item, TextBox tb)
+            {
+                item = int.Parse(tb.Text);
+
+                if (item > 0)
+                {
+                    item -= 1;
+                    tb.Text = (item).ToString();
+                }
+            }
+
             private void btnAddLemon_Click(object sender, EventArgs e)
             {
-                lemons = int.Parse(tbLeemons.Text);
+               /* lemons = int.Parse(tbLeemons.Text);
 
                 if (lemons < 99)
                 {
                     lemons += 1;
                     tbLeemons.Text = (lemons).ToString();
-                }
+                }*/
+
+                increseRecipeItem(out lemons, tbLeemons);
 
                 if (checkifRecipeisOK()) btnMakeLemonade.Enabled = true;
                 else btnMakeLemonade.Enabled = false;
@@ -363,60 +359,67 @@ namespace LemonadeB_1
 
             private void btnRemoveLemon_Click(object sender, EventArgs e)
             {
-                lemons = int.Parse(tbLeemons.Text);
+                /*lemons = int.Parse(tbLeemons.Text);
 
                 if (lemons > 0)
                 {
                     lemons -= 1;
                     tbLeemons.Text = (lemons).ToString();
-                }
+                }*/
 
+                decreseRecipeItem(out lemons, tbLeemons);
                 if (checkifRecipeisOK()) btnMakeLemonade.Enabled = true;
                 else btnMakeLemonade.Enabled = false;
             }
 
             private void btnAddSugar_Click(object sender, EventArgs e)
             {
-                sugar = int.Parse(tbSugar.Text);
+               /* sugar = int.Parse(tbSugar.Text);
 
                 if (sugar < 99)
                 {
                     sugar += 1;
                     tbSugar.Text = (sugar).ToString();
-                }
+                } */
+
+                increseRecipeItem(out sugar, tbSugar);
             }
 
             private void btnRemoveSugar_Click(object sender, EventArgs e)
             {
-                sugar = int.Parse(tbSugar.Text);
+                /*sugar = int.Parse(tbSugar.Text);
 
                 if (sugar > 0)
                 {
                     sugar -= 1;
                     tbSugar.Text = (sugar).ToString();
-                }
+                }*/
+                decreseRecipeItem(out sugar, tbSugar);
             }
 
             private void btnAddIce_Click(object sender, EventArgs e)
             {
+                /*
                 ice = int.Parse(tbIce.Text);
 
                 if (ice < 99)
                 {
                     ice += 1;
                     tbIce.Text = (ice).ToString();
-                }
+                }*/
+                increseRecipeItem(out ice, tbIce);
             }
 
             private void btnRemoveIce_Click(object sender, EventArgs e)
             {
-                ice = int.Parse(tbIce.Text);
+               /* ice = int.Parse(tbIce.Text);
 
                 if (ice > 0)
                 {
                     ice -= 1;
                     tbIce.Text = (ice).ToString();
-                }
+                }*/
+                decreseRecipeItem(out ice, tbIce);
             }
 
             private void nudNumberOfCups_ValueChanged(object sender, EventArgs e)
@@ -456,7 +459,7 @@ namespace LemonadeB_1
 
             private void UpgradesSet() {
                 Upgrade Juicer = new Upgrade("Juicer","Speed", 25.99m,10, "A juicer is a tool used to extract juice from fruits in a process called juicing. Buy this item and get 10% more speed in the making of the lemonade.");
-                Upgrade IceMaker = new Upgrade("Ice Maker","Ice",40m,20, "A machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the start of the day.");
+                Upgrade IceMaker = new Upgrade("Ice Maker","Ice",40m,20, "A machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the end of the day.");
                 Upgrade Jukebox = new Upgrade("Jukebox","Jukebox", 33.33m,15, "A jukebox is a partially automated music-playing device, that will play a patron's selection from self-contained media. If you have this, people will love you and it's more likely that it will increse your popularity. This item gives you 10% more popularity per day.");
                 cbUpgrades.Items.Add(Juicer);
                 cbUpgrades.Items.Add(IceMaker);
@@ -487,25 +490,25 @@ namespace LemonadeB_1
                 {
                     listBoxUpgrades.Items.Add(up);
                     store.upgrades.Add(up);
-                    cbUpgrades.Items.Remove(up);
                     store.Money -= up.price;
                     updateTOtalMoney();
-                    tbUpgradesInfo.Text = "";
-                    cbUpgrades.Text = "";
-                    tbUpgradesPrice.Text = "";
                     btUpgradesBuy.Enabled = false;
-                    up = null;
                 }
                 if (cbUpgrades.Items.Count == 0) cbUpgrades.Enabled = false;
-
-
             }
 
+            private void loadUpgrades() {
+                foreach (Upgrade up in store.upgrades) {
+                    listBoxUpgrades.Items.Add(up);
+                    //cbUpgrades.Items.Remove(up);
+                }
+            }
            
 
             private void btUpgrade_Click(object sender, EventArgs e)
             {
                 changeGroupBox(groupBoxUpgrades);
+                cbUpgrades.Items.Remove(up);
             }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -517,7 +520,6 @@ namespace LemonadeB_1
                 this.Close();
                 Program.form.Close();
                // Environment.Exit(0);
-
             }
         }
 
@@ -539,6 +541,87 @@ namespace LemonadeB_1
         private void LemonadeBusiness_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.form.Close();
+        }
+
+        private void loadScene()
+        {
+            scene = new Scene();
+            background = new Bitmap(Resources.slika_300x300);
+            backgroundLocation = new Point(360, 100);
+            ratingFaceHappy = new Bitmap(Resources.happy, 30, 30);
+            ratingFaceSad = new Bitmap(Resources.face, 30, 30);
+            ratingFaceMad = new Bitmap(Resources.mad, 30, 30);
+        }
+
+        private void loadStoreItems()
+        {
+            lemons = store.Leemons;
+            moneyTODAY = 0;
+            cupsSOLD = 0;
+            sugar = store.Sugar;
+            ice = store.Ice;
+            cups = store.Cups;
+            numPrice.Value = store.price;
+            showRecipe();
+        }
+
+        private void loadMusic()
+        {
+            hasMusic = true;
+            if (store.lastRecipeCups > 0 && store.lastRecipeLeamons > 0) btStartDay.Enabled = true;
+            player = new SoundPlayer(Properties.Resources.Ambient_piano_loop_105_bpm); // here WindowsFormsApplication1 is the namespace and Connect is the audio file name
+            player.PlayLooping();
+        }
+
+        private void isitPaid(Buyer nb)
+        {
+            if (nb.PAID == true)
+            {
+                nb.PAID = false;
+
+                cupsSOLD += 1;
+                moneyTODAY += numPrice.Value;
+                store.Money += numPrice.Value;
+                updateMoney();
+
+                if (store.Rating() == 0)
+                {
+                    labelResults_Mad.Text = (int.Parse(labelResults_Mad.Text) + 1).ToString();
+                    store.Popularity -= 1;
+                    nb.Picture = ratingFaceMad;
+                }
+                else if (store.Rating() == 1)
+                {
+                    store.Popularity -= 1;
+                    labelResults_Sad.Text = (int.Parse(labelResults_Sad.Text) + 1).ToString();
+                    nb.Picture = ratingFaceSad;
+                }
+                else
+                {
+                    store.Popularity += 1;
+                    labelResults_Happy.Text = (int.Parse(labelResults_Happy.Text) + 1).ToString();
+                    nb.Picture = ratingFaceHappy;
+                }
+            }
+        }
+
+        private void DayStart()
+        {
+            ToggleNavBarButtons();
+            changeGroupBox(GroupBoxResults);
+            resetResults();
+            showRecipe();
+            store.startDay();
+            takeResursi();
+            labelLemonadesTotal.Text = store.lastRecipeCups.ToString();
+            btStartDay.Enabled = false;
+            gameTimer.Enabled = true;
+            newHumanTimer.Enabled = true;
+            dayTimer.Enabled = true;
+            moneyTODAY = 0;
+            cupsSOLD = 0;
+            addNonBuyers();
+            addBuyers();
         }
     }
 }

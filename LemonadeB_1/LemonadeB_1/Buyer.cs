@@ -17,6 +17,9 @@ namespace LemonadeB_1
         private int walkNextP;
         private bool ready;
         public bool PAID { get; set; }
+        public enum rating { 
+            happy = 1, sad = 2, mad = 3
+        }
 
         public Buyer(Point _Position, Bitmap _Picture, Point _EndP, int _type, Point _storePoint,int _waitInterval)
             : base(_Position, _Picture, true, _EndP,_type)
@@ -49,6 +52,7 @@ namespace LemonadeB_1
                     PAID = true;
                     Position = new Point(Position.X , PathY + moveSpeed);
                     BuyersWaitList.buyersList.Remove(this);
+                    
                 }
                 else
                 {

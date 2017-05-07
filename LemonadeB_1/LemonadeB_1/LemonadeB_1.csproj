@@ -142,6 +142,13 @@
   <ItemGroup>
     <None Include="Resources\mute.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ambient-piano-loop-105-bpm.wav" />
+    <Content Include="Resources\dice_problem.wav" />
+    <None Include="Resources\Sro_-_04_-_LofRog.mp3" />
+    <None Include="Resources\Smiling-Face-with-Sunglasses-Cool-Emoji-PNG.png" />
+    <None Include="Resources\Wink-Emoji-PNG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

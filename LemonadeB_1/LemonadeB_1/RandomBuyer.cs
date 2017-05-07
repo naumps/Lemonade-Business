@@ -23,7 +23,7 @@ namespace LemonadeB_1
             storeP = new Point(610, 220);
             createStarts();
             createEnds();
-            pic = new Bitmap(Resources.face,30,30);
+            pic = new Bitmap(Resources.face1,30,30);
             generateList(N);
         }
 
@@ -46,6 +46,11 @@ namespace LemonadeB_1
             for (int i = 0; i < n; i++) {
                // x = random.Next(2);
                 x=0;
+                if (random.Next(2) == 1)
+                    pic = new Bitmap(Resources.face1, 30, 30);
+                else
+                    pic = new Bitmap(Resources.face2, 30, 30);
+
                 nb = new Buyer(startingP[x],pic,endingP[x],x,storeP,2);
                 buyersList.Add(nb);
             } 

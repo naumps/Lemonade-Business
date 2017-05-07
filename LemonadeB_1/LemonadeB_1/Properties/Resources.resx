@@ -145,4 +145,16 @@
   <data name="mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dice_problem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_problem.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="face1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Smiling-Face-with-Sunglasses-Cool-Emoji-PNG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="face2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wink-Emoji-PNG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ambient_piano_loop_105_bpm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ambient-piano-loop-105-bpm.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
