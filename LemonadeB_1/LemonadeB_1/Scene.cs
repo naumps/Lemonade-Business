@@ -10,7 +10,7 @@ namespace LemonadeB_1
     {
         private List<NonBuyer> nonbuyers;
         public List<NonBuyer> nonbuyersNow{get;set;}
-        private List<Buyer> buyers;
+        public List<Buyer> buyers {get;set;}
         public List<Buyer> buyersNow { get; set; }
         private int counter;
         private int counter2;
@@ -60,6 +60,7 @@ namespace LemonadeB_1
         {
             foreach (Buyer nb in buyersNow)
             {
+                if(nb.Position.Y < 395)
                 nb.Draw(g);
             }
         }

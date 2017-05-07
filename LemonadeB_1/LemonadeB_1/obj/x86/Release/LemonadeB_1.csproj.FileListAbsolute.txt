@@ -1,0 +1,11 @@
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Release\LemonadeB_1.exe
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\bin\Release\LemonadeB_1.pdb
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.csprojResolveAssemblyReference.cache
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.LemonadeBusiness.resources
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.HowToPlayForm.resources
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.NewStoreForm.resources
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.Properties.Resources.resources
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.StartNewGameForm.resources
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.csproj.GenerateResource.Cache
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.exe
+C:\Users\Miki\Desktop\novaverzija\Lemonade-Business-master\LemonadeB_1\LemonadeB_1\obj\x86\Release\LemonadeB_1.pdb

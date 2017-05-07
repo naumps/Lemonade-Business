@@ -55,7 +55,7 @@ namespace LemonadeB_1
             Sugar = 0;
             Cups = 0;
             Money = 30m;
-            price = 0;
+            price = 1;
             Popularity = 5;
             satisfactionPercent = 0;
             PricesatiSfactionPercent = 0;
@@ -109,6 +109,7 @@ namespace LemonadeB_1
                 if (people > 10) people = 10;
             }
 
+            if (lastRecipeCups < people) people = lastRecipeCups;
             return people;
         }
 

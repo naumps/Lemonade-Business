@@ -42,6 +42,10 @@ namespace LemonadeB_1
             int x;
             for (int i = 0; i < n; i++) {
                 x = random.Next(2);
+                if (x == 1)
+                    pic = new Bitmap(Resources.face1, 30, 30);
+                else
+                    pic = new Bitmap(Resources.face2, 30, 30);
                 nb = new NonBuyer(startingP[x],pic,endingP[x],x);
                 nonbuyersList.Add(nb);
             } 
