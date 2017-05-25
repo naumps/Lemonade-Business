@@ -12,7 +12,7 @@ namespace LemonadeB_1
     public class Store
     {
         //Konstantite pretstavuvaat cena na produktite, moze da bidat fiksni ili da se
-        //mestat na pocetokot na igrata
+        //predefiniraat na pocetokot na igrata
         public readonly decimal LEEMON_PRICE = 3m;
         public readonly decimal SUGAR_PRICE = 1m;
         public readonly decimal ICE_PRICE = 0.5m;
@@ -34,7 +34,6 @@ namespace LemonadeB_1
         public int lastRecipeSugar { get; set; }
         public int lastRecipeIce { get; set; }
         public int lastRecipeCups { get; set; }
-      //  public bool Recipe { get; set; }
 
         public List<Upgrade> upgrades { get; set; }
 
@@ -48,7 +47,6 @@ namespace LemonadeB_1
         public int people { get; set; }
         public Store(String name)
         {
-            //change name
             NameOfStore =name;
             Leemons = 0;
             Ice = 0;
@@ -60,7 +58,6 @@ namespace LemonadeB_1
             satisfactionPercent = 0;
             PricesatiSfactionPercent = 0;
             random = new Random();
-           // Recipe = false;
             recipe = new Recipe();
             upgrades = new List<Upgrade>();
             sunny = true;
@@ -93,6 +90,10 @@ namespace LemonadeB_1
                 }
                 else if (up.type == "Jukebox") {
                     Popularity += 1;
+                }
+                else if(up.type == "TV"){
+                    Popularity += 1;
+                    Money += 1.5m;
                 }
             }
         }

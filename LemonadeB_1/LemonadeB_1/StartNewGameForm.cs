@@ -15,6 +15,9 @@ namespace LemonadeB_1
         public StartNewGameForm()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            
             
         }
 
