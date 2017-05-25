@@ -17,6 +17,9 @@ namespace LemonadeB_1
         public NewStoreForm()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

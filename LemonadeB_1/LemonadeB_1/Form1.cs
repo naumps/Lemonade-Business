@@ -51,7 +51,10 @@ namespace LemonadeB_1
             updateMoney();
             labelResultsPrice.Text = numPrice.Value.ToString() + " $";
             CreateManuelLabel();
-            loadMusic();        
+            loadMusic();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            
         }
 
         private void updateMoney() {
@@ -458,9 +461,11 @@ namespace LemonadeB_1
             }
 
             private void UpgradesSet() {
-                Upgrade Juicer = new Upgrade("Juicer","Speed", 25.99m,10, "A juicer is a tool used to extract juice from fruits in a process called juicing. Buy this item and get 10% more speed in the making of the lemonade.");
-                Upgrade IceMaker = new Upgrade("Ice Maker","Ice",40m,20, "A machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the end of the day.");
-                Upgrade Jukebox = new Upgrade("Jukebox","Jukebox", 33.33m,15, "A jukebox is a partially automated music-playing device, that will play a patron's selection from self-contained media. If you have this, people will love you and it's more likely that it will increse your popularity. This item gives you 10% more popularity per day.");
+                Upgrade Juicer = new Upgrade("Juicer","Speed", 45.59m,10, "A juicer is a tool used to extract juice from fruits in a process called juicing. Buy this item and get 10% more speed in the making of the lemonade.");
+                Upgrade IceMaker = new Upgrade("Ice Maker","Ice",30m,20, "A machine that automatically produces ice for use in drinks. With buying this item you will get extra 20 cubes of ice at the end of the day.");
+                Upgrade Jukebox = new Upgrade("Jukebox","Jukebox", 63.33m,15, "A jukebox is a partially automated music-playing device, that will play a patron's selection from self-contained media. If you have this, people will love you and it's more likely that it will increse your popularity. This item gives you 10% more popularity per day.");
+                Upgrade Television = new Upgrade("Television", "TV", 100.99m, 99, "People usually watch TV to escape from the real world or to pass the time. But after watching TV enough and doing little else to keep it busy, the brain will enter a recessive state, usually leading to big tip (+1.5$ per day) and more popularity (+10%).");
+                cbUpgrades.Items.Add(Television);
                 cbUpgrades.Items.Add(Juicer);
                 cbUpgrades.Items.Add(IceMaker);
                 cbUpgrades.Items.Add(Jukebox);

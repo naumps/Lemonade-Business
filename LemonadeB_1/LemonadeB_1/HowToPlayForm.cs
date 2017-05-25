@@ -14,6 +14,9 @@ namespace LemonadeB_1
         public HowToPlayForm()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            
         }
 
         private void btnOk_Click(object sender, EventArgs e)
